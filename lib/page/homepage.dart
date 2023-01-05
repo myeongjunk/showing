@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:showwing/theme/font.dart';
 
+import '../take_picture_page.dart';
+
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -14,7 +16,14 @@ class MainPage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 21.5),
           child: IconButton(
             icon: const Icon(Icons.photo_camera_outlined),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TakePicturePage(),
+                ),
+              );
+            },
           ),
         ),
         title: Center(
@@ -59,7 +68,6 @@ class MainPage extends StatelessWidget {
                           padding: EdgeInsets.fromLTRB(17, 18, 0, 0),
                           child: SizedBox(
                             width: 313,
-                            height: 106,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
