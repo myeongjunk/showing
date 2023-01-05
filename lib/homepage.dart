@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:showwing/theme/font.dart';
 
+import 'take_picture_page.dart';
+
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -11,7 +13,12 @@ class MainPage extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.photo_camera_outlined),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TakePicturePage()),
+            );
+          },
         ),
         title: Center(
           child: Text(
@@ -61,15 +68,6 @@ class MainPage extends StatelessWidget {
                         Text(
                           '햇빛에서 사진 찍는 것을 좋아해요.\nI like to be taken photo in sunlight.',
                           style: Noto_Body2_Large(),
-                        ),
-                        const SizedBox(height: 5),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 20,
-                          child: Text(
-                            '',
-                            style: Noto_Body2_Large(),
-                          ),
                         ),
                       ],
                     ),

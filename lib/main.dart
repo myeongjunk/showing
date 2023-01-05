@@ -1,8 +1,8 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+
 import 'homepage.dart';
 import 'theme/color_schemes.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 List<CameraDescription> cameras = [];
 
