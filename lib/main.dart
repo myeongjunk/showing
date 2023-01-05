@@ -1,8 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+import 'page/boy.dart';
+import 'page/din.dart';
+import 'page/homepage.dart';
+import 'page/hwamin.dart';
+import 'page/ming.dart';
+import 'page/okio.dart';
 import 'theme/color_schemes.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -34,10 +38,14 @@ class Showing extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
       darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-      home: MainPage(),
       initialRoute: '/',
       routes: {
-        '/main': (BuildContext context) => const MainPage(),
+        '/': (BuildContext context) => const MainPage(),
+        '/hwamin': (BuildContext context) => const HwaminPage(),
+        '/ming': (BuildContext context) => const MingPage(),
+        '/okio': (BuildContext context) => const OkioPage(),
+        '/din': (BuildContext context) => const DinPage(),
+        '/boy': (BuildContext context) => const BoyPage(),
       },
     );
   }

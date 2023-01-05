@@ -72,7 +72,7 @@ TextStyle Lora_Body_Large() {
 TextStyle Noto_Body2_Large() {
   return GoogleFonts.notoSans(
     fontSize: 13,
-    height: 16 / 24,
+    height: 24 / 13,
     letterSpacing: 0.1,
     fontWeight: FontWeight.w400,
   );
