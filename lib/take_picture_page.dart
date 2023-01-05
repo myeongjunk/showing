@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'homepage.dart';
 import 'main.dart';
+import 'page/homepage.dart';
 import 'theme/color_schemes.dart';
 import 'theme/font.dart';
 import 'display_and_save_image_page.dart';
@@ -37,6 +37,8 @@ class TakePicturePageState extends State<TakePicturePage>
   bool _isRearCameraSelected = true;
 
   bool isImageInVisible = false;
+
+  bool valueforcommit = false;
 
   File? _image;
   final picker = ImagePicker();
@@ -160,6 +162,45 @@ class TakePicturePageState extends State<TakePicturePage>
     }
   }
 
+  Widget CameraBrightnessController() {
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              _currentExposureOffset.toStringAsFixed(1) + 'x',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        ),
+        RotatedBox(
+          quarterTurns: 3,
+          child: Container(
+            height: 30,
+            child: Slider(
+              value: _currentExposureOffset,
+              min: _minAvailableExposureOffset,
+              max: _maxAvailableExposureOffset,
+              activeColor: Colors.white,
+              inactiveColor: Colors.white30,
+              onChanged: (value) async {
+                setState(() {
+                  _currentExposureOffset = value;
+                });
+                await controller!.setExposureOffset(value);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -213,46 +254,7 @@ class TakePicturePageState extends State<TakePicturePage>
                                 CameraPreview(controller!),
 
                                 //Camera Brightness Controller
-                                Column(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          _currentExposureOffset
-                                                  .toStringAsFixed(1) +
-                                              'x',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ),
-                                    ),
-                                    RotatedBox(
-                                      quarterTurns: 3,
-                                      child: Container(
-                                        height: 30,
-                                        child: Slider(
-                                          value: _currentExposureOffset,
-                                          min: _minAvailableExposureOffset,
-                                          max: _maxAvailableExposureOffset,
-                                          activeColor: Colors.white,
-                                          inactiveColor: Colors.white30,
-                                          onChanged: (value) async {
-                                            setState(() {
-                                              _currentExposureOffset = value;
-                                            });
-                                            await controller!
-                                                .setExposureOffset(value);
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                CameraBrightnessController(),
                               ],
                             ),
 
