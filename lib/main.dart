@@ -28,7 +28,6 @@ class Showing extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
       home: MainPage(),
       initialRoute: '/',
       routes: {

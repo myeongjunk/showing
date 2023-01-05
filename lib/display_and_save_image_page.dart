@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:showwing/theme/font.dart';
 
 class DisplayAndSaveImagePage extends StatefulWidget {
   const DisplayAndSaveImagePage({super.key, required this.imagePath});
@@ -23,22 +24,37 @@ class DisplayAndSaveImagePageState extends State<DisplayAndSaveImagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Display the Picture')),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Center(
+          child: Text(
+            '',
+            style: Lora_Body_Large(),
+          ),
+        ),
+        actions: [
+          // Camera Front-Rear Controller
+          IconButton(
+            onPressed: () {
+              GallerySaver.saveImage(imagePath, albumName: albumName)
+                  .then((value) => print('>>>> save value= $value'))
+                  .catchError((err) {
+                print('error :( $err');
+              });
+            },
+            icon: Icon(Icons.save),
+          )
+        ],
+      ),
       // The image is stored as a file on the device. Use the `Image.file`
       // constructor with the given path to display the image.
       body: Image.file(File(imagePath)),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          GallerySaver.saveImage(imagePath, albumName: albumName)
-              .then((value) => print('>>>> save value= $value'))
-              .catchError((err) {
-            print('error :( $err');
-          });
-        },
-        child: Icon(
-          Icons.save,
-        ),
-      ),
     );
   }
 }

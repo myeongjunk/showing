@@ -178,6 +178,7 @@ class TakePicturePageState extends State<TakePicturePage>
           ),
         ),
         actions: [
+          // Camera Front-Rear Controller
           IconButton(
             icon: const Icon(Icons.flip_camera_ios_outlined),
             onPressed: () async {
@@ -198,7 +199,7 @@ class TakePicturePageState extends State<TakePicturePage>
           ? Column(
               children: [
                 Stack(
-                  alignment: AlignmentDirectional.bottomCenter,
+                  alignment: AlignmentDirectional.bottomEnd,
                   children: [
                     Stack(
                       alignment: AlignmentDirectional.center,
@@ -288,62 +289,33 @@ class TakePicturePageState extends State<TakePicturePage>
                         showImage(),
                       ],
                     ),
-
-                    // Camera Front-Rear Controller
                     Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _isCameraInitialized = false;
-                                });
-                                setState(() {
-                                  _isRearCameraSelected =
-                                      !_isRearCameraSelected;
-                                });
-                                onNewCameraSelected(
-                                  cameras[_isRearCameraSelected ? 0 : 1],
-                                );
-                              },
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.circle,
-                                    color: Colors.black38,
-                                    size: 60,
-                                  ),
-                                  Icon(
-                                    _isRearCameraSelected
-                                        ? Icons.camera_front
-                                        : Icons.camera_rear,
-                                    color: Colors.white,
-                                    size: 30,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  print('hello');
-                                  setState(() {
-                                    isImageInVisible = !isImageInVisible;
-                                  });
-                                },
-                                hoverColor: Colors.transparent,
-                                onHover: (value) {
-                                  setState(() {
-                                    isImageInVisible = value;
-                                  });
-                                  print(isImageInVisible);
-                                },
-                                child: Image.asset(
-                                    'assets/images/showwing_logo.png')),
-                          ],
-                        ),
+                        InkWell(
+                            onTap: () {
+                              print('hello');
+                              setState(() {
+                                isImageInVisible = !isImageInVisible;
+                              });
+                            },
+                            hoverColor: Colors.transparent,
+                            onHover: (value) {
+                              setState(() {
+                                isImageInVisible = value;
+                              });
+                              print(isImageInVisible);
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Icon(
+                                  Icons.circle,
+                                  color: Colors.white60,
+                                  size: 60,
+                                ),
+                                Image.asset('assets/images/reset_image.png'),
+                              ],
+                            )),
 
                         // Camera Zoom Controller
                         Row(
@@ -395,11 +367,21 @@ class TakePicturePageState extends State<TakePicturePage>
                           FlashMode.off,
                         );
                       },
-                      child: Icon(
-                        Icons.flash_off,
-                        color: _currentFlashMode == FlashMode.off
-                            ? Colors.amber
-                            : Colors.white,
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: Colors.black45,
+                            size: 50,
+                          ),
+                          Icon(
+                            Icons.flash_off,
+                            color: _currentFlashMode == FlashMode.off
+                                ? Colors.amber
+                                : Colors.white,
+                          ),
+                        ],
                       ),
                     ),
                     InkWell(
@@ -421,14 +403,11 @@ class TakePicturePageState extends State<TakePicturePage>
                     InkWell(
                       onTap: () async {
                         setState(() {
-                          _isCameraInitialized = false;
+                          _currentFlashMode = FlashMode.always;
                         });
-                        onNewCameraSelected(
-                          cameras[_isRearCameraSelected ? 1 : 0],
+                        await controller!.setFlashMode(
+                          FlashMode.always,
                         );
-                        setState(() {
-                          _isRearCameraSelected = !_isRearCameraSelected;
-                        });
                       },
                       child: Icon(
                         Icons.flash_on,
