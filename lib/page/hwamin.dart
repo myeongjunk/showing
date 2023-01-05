@@ -30,10 +30,12 @@ class _HwaminPageState extends State<HwaminPage> {
             Container(
               width: 375,
               height: 388,
-              child: Image.asset(
-                hwaminPhoto[itemIndex].image,
-                fit: BoxFit.fill,
-              ),
+              child: InkWell(
+                  child: Image.asset(
+                    hwaminPhoto[itemIndex].image,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () {}),
             ),
             const SizedBox(height: 21),
             SizedBox(

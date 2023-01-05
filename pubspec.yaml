@@ -88,6 +88,8 @@ flutter:
     - assets/images/boy2.png
     - assets/images/boy3.png
     - assets/images/boy4.png
+    - assets/images/showwing_logo.png
+    - assets/images/reset_image.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

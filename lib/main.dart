@@ -1,11 +1,13 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+
 import 'page/boy.dart';
 import 'page/din.dart';
 import 'page/homepage.dart';
 import 'page/hwamin.dart';
 import 'page/ming.dart';
 import 'page/okio.dart';
+
 import 'theme/color_schemes.dart';
 
 List<CameraDescription> cameras = [];
@@ -13,18 +15,13 @@ List<CameraDescription> cameras = [];
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
   // can be called before `runApp()`
-
   try {
     WidgetsFlutterBinding.ensureInitialized();
     cameras = await availableCameras();
   } on CameraException catch (e) {
     print('Error in fetching the cameras: $e');
   }
-
-  // Obtain a list of the available cameras on the device.
-
-  // Get a specific camera from the list of available cameras.
-
+  // Obtain a list of the available cameras on the device // Get a specific camera from the list of available cameras.
   runApp(Showing());
 }
 
@@ -37,7 +34,6 @@ class Showing extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
       initialRoute: '/',
       routes: {
         '/': (BuildContext context) => const MainPage(),
