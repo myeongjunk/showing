@@ -352,22 +352,127 @@ class TakePicturePageState extends State<TakePicturePage>
                             ),
                           ],
                         ),
+                        // Camera Flash Mode
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            InkWell(
+                              onTap: () async {
+                                setState(() {
+                                  _currentFlashMode = FlashMode.off;
+                                });
+                                await controller!.setFlashMode(
+                                  FlashMode.off,
+                                );
+                              },
+                              child: Stack(
+                                alignment: AlignmentDirectional.center,
+                                children: [
+                                  Icon(
+                                    Icons.circle,
+                                    color: Colors.black45,
+                                    size: 50,
+                                  ),
+                                  Icon(
+                                    Icons.flash_off,
+                                    color: _currentFlashMode == FlashMode.off
+                                        ? Colors.amber
+                                        : Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () async {
+                                setState(() {
+                                  _currentFlashMode = FlashMode.auto;
+                                });
+                                await controller!.setFlashMode(
+                                  FlashMode.auto,
+                                );
+                              },
+                              child: Stack(
+                                alignment: AlignmentDirectional.center,
+                                children: [
+                                  Icon(
+                                    Icons.circle,
+                                    color: Colors.black45,
+                                    size: 50,
+                                  ),
+                                  Icon(
+                                    Icons.flash_auto,
+                                    color: _currentFlashMode == FlashMode.auto
+                                        ? Colors.amber
+                                        : Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () async {
+                                setState(() {
+                                  _currentFlashMode = FlashMode.always;
+                                });
+                                await controller!.setFlashMode(
+                                  FlashMode.always,
+                                );
+                              },
+                              child: Stack(
+                                alignment: AlignmentDirectional.center,
+                                children: [
+                                  Icon(
+                                    Icons.circle,
+                                    color: Colors.black45,
+                                    size: 50,
+                                  ),
+                                  Icon(
+                                    Icons.flash_on,
+                                    color: _currentFlashMode == FlashMode.always
+                                        ? Colors.amber
+                                        : Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () async {
+                                setState(() {
+                                  _currentFlashMode = FlashMode.torch;
+                                });
+                                await controller!.setFlashMode(
+                                  FlashMode.torch,
+                                );
+                              },
+                              child: Stack(
+                                alignment: AlignmentDirectional.center,
+                                children: [
+                                  Icon(
+                                    Icons.circle,
+                                    color: Colors.black45,
+                                    size: 50,
+                                  ),
+                                  Icon(
+                                    Icons.highlight,
+                                    color: _currentFlashMode == FlashMode.torch
+                                        ? Colors.amber
+                                        : Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ],
                 ),
-                // Camera Flash Mode
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     InkWell(
                       onTap: () async {
-                        setState(() {
-                          _currentFlashMode = FlashMode.off;
-                        });
-                        await controller!.setFlashMode(
-                          FlashMode.off,
-                        );
+                        getImage(ImageSource.gallery);
                       },
                       child: Stack(
                         alignment: AlignmentDirectional.center,
@@ -375,125 +480,64 @@ class TakePicturePageState extends State<TakePicturePage>
                           Icon(
                             Icons.circle,
                             color: Colors.black45,
-                            size: 50,
+                            size: 60,
                           ),
                           Icon(
-                            Icons.flash_off,
-                            color: _currentFlashMode == FlashMode.off
-                                ? Colors.amber
-                                : Colors.white,
+                            Icons.image,
+                            color: Colors.white,
                           ),
                         ],
                       ),
                     ),
                     InkWell(
                       onTap: () async {
-                        setState(() {
-                          _currentFlashMode = FlashMode.auto;
-                        });
-                        await controller!.setFlashMode(
-                          FlashMode.auto,
-                        );
+                        // Take the Picture in a try / catch block. If anything goes wrong,
+                        // catch the error.
+                        try {
+                          // Ensure that the camera is initialized.
+
+                          // Attempt to take a picture and get the file `image`
+                          // where it was saved.
+                          final image = await controller!.takePicture();
+
+                          if (!mounted) return;
+
+                          // If the picture was taken, display it on a new screen.
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => DisplayAndSaveImagePage(
+                                // Pass the automatically generated path to
+                                // the DisplayPictureScreen widget.
+                                imagePath: image.path,
+                              ),
+                            ),
+                          );
+                        } catch (e) {
+                          // If an error occurs, log the error to the console.
+                          print(e);
+                        }
                       },
                       child: Icon(
-                        Icons.flash_auto,
-                        color: _currentFlashMode == FlashMode.auto
-                            ? Colors.amber
-                            : Colors.white,
+                        Icons.circle,
+                        color: Colors.black45,
+                        size: 75,
                       ),
                     ),
                     InkWell(
-                      onTap: () async {
-                        setState(() {
-                          _currentFlashMode = FlashMode.always;
-                        });
-                        await controller!.setFlashMode(
-                          FlashMode.always,
-                        );
-                      },
-                      child: Icon(
-                        Icons.flash_on,
-                        color: _currentFlashMode == FlashMode.always
-                            ? Colors.amber
-                            : Colors.white,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        setState(() {
-                          _currentFlashMode = FlashMode.torch;
-                        });
-                        await controller!.setFlashMode(
-                          FlashMode.torch,
-                        );
-                      },
-                      child: Icon(
-                        Icons.highlight,
-                        color: _currentFlashMode == FlashMode.torch
-                            ? Colors.amber
-                            : Colors.white,
-                      ),
-                    ),
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      MainPage()),
+                              (route) => false);
+                        },
+                        child: Image.asset('assets/images/showwing_logo.png')),
                   ],
-                )
+                ),
               ],
             )
           : Container(),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FloatingActionButton(
-            heroTag: 1,
-            onPressed: () {
-              getImage(ImageSource.gallery);
-            },
-            child: Icon(Icons.image),
-          ),
-          FloatingActionButton(
-            heroTag: 2,
-            // Provide an onPressed callback.
-            onPressed: () async {
-              // Take the Picture in a try / catch block. If anything goes wrong,
-              // catch the error.
-              try {
-                // Ensure that the camera is initialized.
-
-                // Attempt to take a picture and get the file `image`
-                // where it was saved.
-                final image = await controller!.takePicture();
-
-                if (!mounted) return;
-
-                // If the picture was taken, display it on a new screen.
-                await Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => DisplayAndSaveImagePage(
-                      // Pass the automatically generated path to
-                      // the DisplayPictureScreen widget.
-                      imagePath: image.path,
-                    ),
-                  ),
-                );
-              } catch (e) {
-                // If an error occurs, log the error to the console.
-                print(e);
-              }
-            },
-            child: const Icon(Icons.camera_alt),
-          ),
-          FloatingActionButton(
-            heroTag: 3,
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => MainPage()),
-                  (route) => false);
-            },
-            child: Image.asset('assets/images/showwing_logo.png'),
-          ),
-        ],
-      ),
     );
   }
 }
