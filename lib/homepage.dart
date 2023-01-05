@@ -27,7 +27,6 @@ class MainPage extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: Colors.white,
         child: ListView(
           scrollDirection: Axis.vertical,
           children: [
@@ -51,38 +50,24 @@ class MainPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 18),
-                        SizedBox(
-                          height: 28,
-                          width: 94,
-                          child: Text(
-                            'Hwamini',
-                            style: Lora_Title_Large(),
-                          ),
+                        Text(
+                          'Hwamini',
+                          style: Lora_Title_Large(),
                         ),
-                        const SizedBox(height: 5),
-                        SizedBox(
-                          width: 71,
-                          height: 20,
-                          child: Text(
-                            '@ hwa.min',
-                            style: Lora_Label_Large(),
-                          ),
+                        Text(
+                          '@hwa.min',
+                          style: Lora_Label_Large(),
+                        ),
+                        Text(
+                          '햇빛에서 사진 찍는 것을 좋아해요.\nI like to be taken photo in sunlight.',
+                          style: Noto_Body2_Large(),
                         ),
                         const SizedBox(height: 5),
                         SizedBox(
                           width: double.infinity,
                           height: 20,
                           child: Text(
-                            '햇빛에서 사진 찍는 것을 좋아해요.',
-                            style: Noto_Body2_Large(),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 20,
-                          child: Text(
-                            'I like to be taken photo in sunlight.',
+                            '',
                             style: Noto_Body2_Large(),
                           ),
                         ),
