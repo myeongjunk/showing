@@ -50,7 +50,7 @@ TextStyle Lora_Headline_Large() {
 
 TextStyle Lora_Title_Large() {
   return GoogleFonts.lora(
-      fontSize: 22, height: 28 / 22, fontWeight: FontWeight.w400);
+      fontSize: 22, height: 28 / 22, fontWeight: FontWeight.w600);
 }
 
 TextStyle Lora_Label_Large() {
@@ -67,4 +67,13 @@ TextStyle Lora_Body_Large() {
       height: 16 / 24,
       letterSpacing: 0.5,
       fontWeight: FontWeight.w400);
+}
+
+TextStyle Noto_Body2_Large() {
+  return GoogleFonts.notoSans(
+    fontSize: 13,
+    height: 16 / 24,
+    letterSpacing: 0.1,
+    fontWeight: FontWeight.w400,
+  );
 }

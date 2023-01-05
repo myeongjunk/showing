@@ -6,21 +6,20 @@ import 'package:google_fonts/google_fonts.dart';
 
 List<CameraDescription> cameras = [];
 
-void main() {
-// Future<void> main() async {
-//   // Ensure that plugin services are initialized so that `availableCameras()`
-//   // can be called before `runApp()`
+Future<void> main() async {
+  // Ensure that plugin services are initialized so that `availableCameras()`
+  // can be called before `runApp()`
 
-//   try {
-//     WidgetsFlutterBinding.ensureInitialized();
-//     cameras = await availableCameras();
-//   } on CameraException catch (e) {
-//     print('Error in fetching the cameras: $e');
-//   }
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    print('Error in fetching the cameras: $e');
+  }
 
-//   // Obtain a list of the available cameras on the device.
+  // Obtain a list of the available cameras on the device.
 
-//   // Get a specific camera from the list of available cameras.
+  // Get a specific camera from the list of available cameras.
 
   runApp(Showing());
 }
