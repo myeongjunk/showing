@@ -15,7 +15,7 @@ class PhotoModel {
   final String keyword;
 }
 
-const PhotoList = [
+const hwaminPhoto = [
   PhotoModel(
     'assets/images/hwamin1.png',
     'Selfie',
@@ -64,6 +64,9 @@ const PhotoList = [
     'Phone SE3, iPhone 12',
     '#시티팝 #생일케이크',
   ),
+];
+
+const mingPhoto = [
   PhotoModel(
     'assets/images/ming1.png',
     'Selfie',
@@ -112,6 +115,9 @@ const PhotoList = [
     'Phone SE3, iPhone 12',
     '#시티팝 #생일케이크',
   ),
+];
+
+const okioPhoto = [
   PhotoModel(
     'assets/images/okio1.png',
     'Selfie',
@@ -160,6 +166,9 @@ const PhotoList = [
     'Phone SE3, iPhone 12',
     '#시티팝 #생일케이크',
   ),
+];
+
+const sullendinPhoto = [
   PhotoModel(
     'assets/images/sullendin1.png',
     'Selfie',
@@ -208,6 +217,9 @@ const PhotoList = [
     'Phone SE3, iPhone 12',
     '#시티팝 #생일케이크',
   ),
+];
+
+const boyPhoto = [
   PhotoModel(
     'assets/images/boy1.png',
     'Selfie',
