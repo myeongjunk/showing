@@ -64,13 +64,33 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/hwamin.png
+    - assets/images/hwamin1.png
+    - assets/images/hwamin2.png
+    - assets/images/hwamin3.png
+    - assets/images/hwamin4.png
     - assets/images/ming.png
+    - assets/images/ming1.png
+    - assets/images/ming2.png
+    - assets/images/ming3.png
+    - assets/images/ming4.png
     - assets/images/okio.png
+    - assets/images/okio1.png
+    - assets/images/okio2.png
+    - assets/images/okio3.png
+    - assets/images/okio4.png
     - assets/images/sullendin.png
+    - assets/images/sullendin1.png
+    - assets/images/sullendin2.png
+    - assets/images/sullendin3.png
+    - assets/images/sullendin4.png
     - assets/images/boy.png
+    - assets/images/boy1.png
+    - assets/images/boy2.png
+    - assets/images/boy3.png
+    - assets/images/boy4.png
     - assets/images/showwing_logo.png
     - assets/images/reset_image.png
-    
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
