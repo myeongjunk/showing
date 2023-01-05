@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+import 'theme/color_schemes.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'theme/font.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+      home: const Home(),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  const Home({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          elevation: 2,
+          title: Text(
+            "Material Theme Builder",
+            style: Noto_Title_Large(),
+          ),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Update with your UI',
+                style: Lora_Title_Large(),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton:
+            FloatingActionButton(onPressed: () => {}, tooltip: 'Increment'));
+  }
+}
