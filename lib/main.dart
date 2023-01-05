@@ -1,53 +1,45 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'homepage.dart';
 import 'theme/color_schemes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'theme/font.dart';
+List<CameraDescription> cameras = [];
 
 void main() {
-  runApp(const MyApp());
+// Future<void> main() async {
+//   // Ensure that plugin services are initialized so that `availableCameras()`
+//   // can be called before `runApp()`
+
+//   try {
+//     WidgetsFlutterBinding.ensureInitialized();
+//     cameras = await availableCameras();
+//   } on CameraException catch (e) {
+//     print('Error in fetching the cameras: $e');
+//   }
+
+//   // Obtain a list of the available cameras on the device.
+
+//   // Get a specific camera from the list of available cameras.
+
+  runApp(Showing());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Showing extends StatelessWidget {
+  const Showing({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
       darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-      home: const Home(),
+      home: MainPage(),
+      initialRoute: '/',
+      routes: {
+        '/main': (BuildContext context) => const MainPage(),
+      },
     );
-  }
-}
-
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 2,
-          title: Text(
-            "Material Theme Builder",
-            style: Noto_Title_Large(),
-          ),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Update with your UI',
-                style: Lora_Title_Large(),
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton:
-            FloatingActionButton(onPressed: () => {}, tooltip: 'Increment'));
   }
 }
