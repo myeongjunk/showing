@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:showwing/photo/photolist.dart';
 import 'package:showwing/theme/font.dart';
 
+import '../take_picture_page.dart';
+
 class OkioPage extends StatefulWidget {
   const OkioPage({Key? key}) : super(key: key);
 
@@ -35,7 +37,14 @@ class _OkioPageState extends State<OkioPage> {
                       okioPhoto[itemIndex].image,
                       fit: BoxFit.fill,
                     ),
-                    onTap: () {}),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TakePicturePage(),
+                        ),
+                      );
+                    }),
               ),
               const SizedBox(height: 21),
               SizedBox(
